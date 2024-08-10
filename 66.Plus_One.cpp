@@ -1,32 +1,31 @@
 // Problem Link: https://leetcode.com/problems/plus-one/description/
+// Problem Statement: You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
+
+// Increment the large integer by one and return the resulting array of digits.
+
+
+
 
 #include<bits/stdc++.h>
 // #define ll long long int ;
 using namespace std;
 class Solution {
 public:
-    vector<int> plusOne(vector<int>& digits) 
-    {
-      long long int last = digits.size() -1;
-      int i = 1;
-      long long int number = 0;
-      while(last>=0)
-      {
-        number = number + digits[last] * i;
-        --last;
-        i = i * 10;
-      }
-      // cout<<number;
-      ++number;
-      vector<int>second;
-      while(number != 0)
-      {
-        second.push_back(number % 10);
-        number = number  /10;
-      }
-      reverse(second.begin(),second.end());
-      return second;
+    vector<int> plusOne(vector<int>& digits) {
+      int n = digits.size();
+    
+    for (int i = n - 1; i >= 0; --i) {
+        if (digits[i] < 9) {
+            digits[i]++;
+            return digits;
+        }
+        digits[i] = 0;
     }
+    
+    // If the control reaches here, it means all digits were 9.
+    digits.insert(digits.begin(), 1);
+    return digits;
+}
 };
 
 int main()
