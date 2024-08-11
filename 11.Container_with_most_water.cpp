@@ -1,5 +1,5 @@
 // Problem Link: https://leetcode.com/problems/container-with-most-water/description/
-// Brute Force Approach
+// Two Pointer Method Appraoch
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -9,16 +9,24 @@ public:
         int maxArea = 0;
         int area;
         int size = height.size() -1;
-        for(int i = 0;i<=size;++i)
+        int l = 0; //left pointer
+        int r = size; //right pointer
+        // cout<<l<<" "<<r<<endl;
+        while ((l<r))
         {
-            for(int j = i+1;j<=size;++j)
+            
+            area = (r-l) * min(height[l],height[r]);
+            maxArea = max(area,maxArea);
+            if(height[l]<height[r])
             {
-                area = (j-i) * min(height[i],height[j]);
-                // cout<<area<<endl;
-                maxArea = max(area,maxArea);
+                ++l;
+            }
+            else
+            {
+                r--;
             }
         }
-        // cout<<maxArea;
+        
         return maxArea;
     }
 };
