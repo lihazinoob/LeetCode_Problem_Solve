@@ -24,7 +24,33 @@ void generatingallperm(int n,vector<int>arr,bool visited[],vector<int>ds,vector<
   
 
 }
+void nextperm(int n, vector<vector<int>>ans, vector<int>arr)
 
+{
+  sort(ans.begin(),ans.end());
+  int index;
+  for(int i = 0;i<ans.size();i++)
+  {
+    if(ans[i] == arr)
+    {
+      index = i;
+    }
+  }
+  if(index < ans.size() - 1)
+  {
+    for(int i = 0;i<n;i++)
+    {
+      cout<<ans[index+1][i]<<" ";
+    }
+  }
+  else if(index == ans.size() - 1)
+  {
+    for(int i = 0;i<n;i++)
+    {
+      cout<<ans[0][i]<<" ";
+    }
+  }
+}
 int main()
 {
   int n;
@@ -36,18 +62,13 @@ int main()
     cin>>x;
     arr.push_back(x);
   }
+  // cout<<arr.size();
   bool visited[n] = {false};
   vector<int>ds;
   vector<vector<int>>ans;
   generatingallperm(n,arr,visited,ds,ans);
-  for(int i = 0;i<ans.size();i++)
-  {
-    for(int j = 0;j<n;j++)
-    {
-      cout<<ans[i][j]<<" ";
-    }
-    cout<<endl;
-  }
+  nextperm(n,ans,arr);
+  
 
 
   return 0;
